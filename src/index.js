@@ -4,7 +4,7 @@ import axios from "axios";
 
 import Charts from "./components/Charts";
 import Navbar from "./components/Navbar";
-
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "./styles.scss";
 
 const App = () => {
@@ -20,11 +20,27 @@ const App = () => {
 	}, []);
 	return (
 		<div className="App">
-			<Navbar />
-			<Charts coinData={coinData} />
+			<Navbar coinData={coinData} />
+			{/* <Switch> */}
+			{/* <Route path="/">
+					<h1>All Coins:</h1>
+					<Charts coinData={coinData} />
+				</Route> */}
+
+			{coinData.map(coin => (
+				<Route exact path={`/${coin.symbol}`}>
+					<Charts coin={coin} />
+				</Route>
+			))}
+			{/* </Switch> */}
 		</div>
 	);
 };
 
 const rootElement = document.getElementById("root");
-ReactDOM.render(<App />, rootElement);
+ReactDOM.render(
+	<Router>
+		<App />
+	</Router>,
+	rootElement
+);

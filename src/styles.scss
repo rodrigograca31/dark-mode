@@ -187,6 +187,7 @@ img {
 	height: 20px;
 	position: relative;
 	width: 40px;
+	cursor: pointer;
 }
 
 .toggle {
@@ -249,5 +250,28 @@ img {
 	.navbar {
 		background-color: #1f2022;
 		border: none;
+	}
+	.cryptos a {
+		&.active {
+			color: white;
+		}
+	}
+}
+
+a {
+	text-decoration: none;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+
+.cryptos a {
+	padding: 0 10px;
+	font-size: 20px;
+	color: blue;
+	&:visited {
+		color: blue;
+	}
+	&.active {
+		color: black;
 	}
 }
