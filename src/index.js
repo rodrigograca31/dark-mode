@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import axios from "axios";
 
+import { useDarkMode } from "./hooks/useDarkMode";
 import Charts from "./components/Charts";
 import Navbar from "./components/Navbar";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
@@ -9,7 +10,11 @@ import "./styles.scss";
 
 const App = () => {
 	const [coinData, setCoinData] = useState([]);
-
+	const [darkMode, setDarkMode] = useDarkMode(false);
+	const toggleMode = e => {
+		e.preventDefault();
+		setDarkMode(!darkMode);
+	};
 	useEffect(() => {
 		axios
 			.get(
@@ -21,7 +26,11 @@ const App = () => {
 
 	return (
 		<div className="App">
-			<Navbar coinData={coinData} />
+			<Navbar
+				coinData={coinData}
+				toggleMode={toggleMode}
+				darkMode={darkMode}
+			/>
 			{/* <Switch> */}
 			{/* <Route path="/">
 					<h1>All Coins:</h1>
@@ -30,7 +39,7 @@ const App = () => {
 
 			{coinData.map(coin => (
 				<Route exact path={`/${coin.symbol}`}>
-					<Charts coin={coin} />
+					<Charts coin={coin} darkMode={darkMode} />
 					{/* <Charts /> */}
 				</Route>
 			))}

@@ -1,13 +1,7 @@
 import React, { useState } from "react";
-import { useDarkMode } from "../hooks/useDarkMode";
 import { Link, NavLink } from "react-router-dom";
 
-const Navbar = ({ coinData }) => {
-	const [darkMode, setDarkMode] = useDarkMode(false);
-	const toggleMode = e => {
-		e.preventDefault();
-		setDarkMode(!darkMode);
-	};
+const Navbar = ({ coinData, toggleMode, darkMode }) => {
 	return (
 		<nav className="navbar">
 			<h1>

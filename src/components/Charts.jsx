@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Chart from "./Chart";
 import axios from "axios";
 
-const Charts = ({ coin }) => {
+const Charts = ({ coin, darkMode }) => {
 	const [coinData, setCoinData] = useState(false);
 	const [chartData, setchartData] = useState({ prices: [] });
 
@@ -35,7 +35,12 @@ const Charts = ({ coin }) => {
 							alt={coinData.name}
 						/>
 					</div>
-					{coinData && <Chart sparklineData={chartData.prices} />}
+					{coinData && (
+						<Chart
+							sparklineData={chartData.prices}
+							darkMode={darkMode}
+						/>
+					)}
 				</div>
 			)}
 		</div>
