@@ -10,17 +10,14 @@ import {
 } from "recharts";
 
 const Chart = ({ sparklineData }) => {
+	console.log(sparklineData);
+
 	const formattedData = sparklineData
 		.map((price, idx) => {
-			if (idx % 6 === 0) {
-				const timeToSubtract = 168 - idx;
-				const date = moment()
-					.subtract(timeToSubtract, "hours")
-					.format("ddd h:mma");
-				return { value: price, date };
-			} else if (idx === sparklineData.length - 1) {
-				const date = moment().format("ddd h:mma");
-				return { value: price, date };
+			// too much data use only every 24 hours value
+			if (idx !== sparklineData.length - 1 && idx % 24 === 0) {
+				const date = moment(price[0]).format("ddd h:mma");
+				return { value: price[1], date };
 			}
 			return null;
 		})

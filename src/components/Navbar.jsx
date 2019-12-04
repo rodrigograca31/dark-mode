@@ -14,9 +14,11 @@ const Navbar = ({ coinData }) => {
 				<Link to="/">Crypto Tracker</Link>
 			</h1>
 
-			<div class="cryptos">
+			<div className="cryptos">
 				{coinData.map(coin => (
-					<NavLink to={`/${coin.symbol}`}>{coin.symbol}</NavLink>
+					<NavLink to={`/${coin.symbol}`} key={coin.symbol}>
+						{coin.symbol}
+					</NavLink>
 				))}
 			</div>
 
